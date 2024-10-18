@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: normalized_exchange_rates
+    description: "Transformación de nombres de monedas para un formato uniforme"
+    columns:
+      - name: country
+        description: "Nombre del país"
+      - name: monetary_unit
+        description: "Unidad monetaria"
+      - name: currency
+        description: "Nombre de la moneda transformado"
+      - name: exchange_rate_bs
+        description: "Tasa de cambio en bolivianos"
+      - name: exchange_rate_me
+        description: "Tasa de cambio en moneda extranjera"
+      - name: date
+        description: "Fecha de la tasa de cambio"
+    #tests:
+      #- not_duplicated_combination
+   
+  - name: exchange_rates_pivot
+    description: "Modelo que pivotea las tasas de cambio de diferentes monedas a un formato ancho por fecha."
+    columns:
+      - name: date
+        description: "La fecha en la que se registró la tasa de cambio."
+        tests:
+          - not_null  # Verifica que la columna 'date' no tenga valores nulos
+      - name: usd_v_rate
+        description: "Tasa de cambio en Bolivianos para el USD en el mercado de venta."
+      - name: usd_c_rate
+        description: "Tasa de cambio en Bolivianos para el USD en el mercado de compra."
+      - name: eur_rate
+        description: "Tasa de cambio en Bolivianos para el Euro (EUR)."
+      - name: jpy_rate
+        description: "Tasa de cambio en Bolivianos para el Yen japonés (JPY)."
+      - name: gbp_rate
+        description: "Tasa de cambio en Bolivianos para la Libra esterlina (GBP)."
+      - name: aud_rate
+        description: "Tasa de cambio en Bolivianos para el Dólar australiano (AUD)."
+      - name: cad_rate
+        description: "Tasa de cambio en Bolivianos para el Dólar canadiense (CAD)."
+
+  - name: currency_volatility_analysis
+    description: "Modelo que analiza la volatilidad de las tasas de cambio por país y moneda."
+    columns:
+      - name: country
+        description: "El país asociado con la tasa de cambio."
+      - name: currency
+        description: "El tipo de moneda."
+      - name: stddev_bs
+        description: "La desviación estándar de la tasa de cambio en Bolivianos (Bs)."
+      - name: stddev_me
+        description: "La desviación estándar de la tasa de cambio en la moneda extranjera (ME)."
+      
+  - name: exchange_rates_time_analysis
+    description: "Modelo que analiza las tasas de cambio a lo largo del tiempo, promediando por mes."
+    columns:
+      - name: country
+        description: "El país asociado con la tasa de cambio."
+        tests:
+          - not_null  # Prueba not_null para la columna 'country'
+      - name: currency
+        description: "El tipo de moneda."
+        tests:
+          - not_null  # Prueba not_null para la columna 'currency'
+      - name: week
+        description: "La semana correspondiente a la fecha de la tasa de cambio, truncado para análisis temporal."
+        tests:
+          - not_null  # Prueba not_null para la columna 'month'
+      - name: avg_exchange_rate_bs
+        description: "El promedio de la tasa de cambio en Bolivianos (Bs) por mes."
+        tests:
+          - not_null  # Prueba not_null para la columna 'avg_exchange_rate_bs'
+      - name: avg_exchange_rate_me
+        description: "El promedio de la tasa de cambio en la moneda extranjera (ME) por mes."
+    
+      
