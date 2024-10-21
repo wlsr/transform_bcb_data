@@ -11,7 +11,7 @@ WITH change_currency AS (
         exchange_rate_bs,
         exchange_rate_me,
         date
-    FROM public.exchange_rates
+    FROM public.raw_exchange_rates
     WHERE country IS NOT NULL
 )
 

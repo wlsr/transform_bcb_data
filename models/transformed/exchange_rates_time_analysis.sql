@@ -2,16 +2,14 @@
 WITH temporal_analysis AS (
     SELECT
         country,
+        monetary_unit,
         currency,
-        date_trunc('week', date) AS week,  -- O 'day', 'week', 'year' según lo que quieras analizar
-        AVG(exchange_rate_bs) AS avg_exchange_rate_bs,
-        AVG(exchange_rate_me) AS avg_exchange_rate_me
+        exchange_rate_bs,
+        exchange_rate_me,
+        date
     FROM
         {{ ref('normalized_exchange_rates') }}
-    GROUP BY
-        week, country, currency
-    ORDER BY 
-        week
+    WHERE currency != 'USD_C'
 )
 SELECT * 
 FROM temporal_analysis

@@ -74,5 +74,21 @@ models:
           - not_null  # Prueba not_null para la columna 'avg_exchange_rate_bs'
       - name: avg_exchange_rate_me
         description: "El promedio de la tasa de cambio en la moneda extranjera (ME) por mes."
+
+  - name: special_exchange_rates
+    columns:
+      - name: unit_name
+        tests:
+          - not_null
+      - name: currency_pair
+        tests:
+          - not_null
+      - name: exchange_rate
+        tests:
+          - not_null
+      - name: date
+        tests:
+          - not_null
+    
     
       
