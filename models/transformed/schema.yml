@@ -64,15 +64,11 @@ models:
         description: "El tipo de moneda."
         tests:
           - not_null  # Prueba not_null para la columna 'currency'
-      - name: week
-        description: "La semana correspondiente a la fecha de la tasa de cambio, truncado para análisis temporal."
-        tests:
-          - not_null  # Prueba not_null para la columna 'month'
-      - name: avg_exchange_rate_bs
+      - name: exchange_rate_bs
         description: "El promedio de la tasa de cambio en Bolivianos (Bs) por mes."
         tests:
           - not_null  # Prueba not_null para la columna 'avg_exchange_rate_bs'
-      - name: avg_exchange_rate_me
+      - name: exchange_rate_me
         description: "El promedio de la tasa de cambio en la moneda extranjera (ME) por mes."
 
   - name: special_exchange_rates

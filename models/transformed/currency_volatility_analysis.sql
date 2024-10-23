@@ -1,5 +1,7 @@
 WITH volatility_analysis AS (
     SELECT
+        DATE_TRUNC('month', date) AS month, -- Agrupa por mes
+        EXTRACT(YEAR FROM date) AS year, -- Extrae el año
         country,
         currency,
         STDDEV(exchange_rate_bs) AS stddev_bs,
@@ -7,7 +9,7 @@ WITH volatility_analysis AS (
     FROM
         {{ ref('normalized_exchange_rates') }}
     GROUP BY
-        country, currency
+        month, year, country, currency
 )
 
 SELECT * 

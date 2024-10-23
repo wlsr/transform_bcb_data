@@ -9,7 +9,7 @@ WITH temporal_analysis AS (
         date
     FROM
         {{ ref('normalized_exchange_rates') }}
-    WHERE currency != 'USD_C'
+    WHERE currency != 'USD_V'
 )
 SELECT * 
 FROM temporal_analysis
