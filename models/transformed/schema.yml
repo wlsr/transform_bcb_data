@@ -46,8 +46,12 @@ models:
     columns:
       - name: country
         description: "El país asociado con la tasa de cambio."
+        tests:
+          - not_null
       - name: currency
         description: "El tipo de moneda."
+        tests:
+          - not_null
       - name: stddev_bs
         description: "La desviación estándar de la tasa de cambio en Bolivianos (Bs)."
       - name: stddev_me
@@ -73,9 +77,6 @@ models:
 
   - name: special_exchange_rates
     columns:
-      - name: unit_name
-        tests:
-          - not_null
       - name: currency_pair
         tests:
           - not_null

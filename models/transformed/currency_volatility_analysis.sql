@@ -10,8 +10,10 @@ WITH volatility_analysis AS (
         AVG(exchange_rate_me) AS avg_exchange_rate_me 
     FROM
         {{ ref('normalized_exchange_rates') }}
+    WHERE 
+        exchange_rate_me IS NOT NULL 
     GROUP BY
-        month, year, country, currency
+        month, year, country, currency  
 )
 
 SELECT * 
