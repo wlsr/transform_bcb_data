@@ -1,15 +1,15 @@
 WITH ranked_data AS (
-    -- Step 1: Ordenar los datos por moneda y fecha
+    -- Ordenar los datos por moneda y fecha
     SELECT
         currency,
         exchange_rate_me,
         date,
         LAG(exchange_rate_me) OVER (PARTITION BY currency ORDER BY date) AS prev_exchange_rate
-    FROM raw_exchange_rates -- Tu tabla de tasas de cambio original
+    FROM raw_exchange_rates
     WHERE country is NULL
 )
 
--- Step 2: Calcular la tasa de cambio
+-- Calcular la tasa de cambio
 SELECT
     currency as currency_pair,
     exchange_rate_me as exchange_rate,

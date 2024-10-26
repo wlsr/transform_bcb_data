@@ -9,7 +9,7 @@ WITH pivoted_rates AS (
         MAX(CASE WHEN currency = 'GBP' THEN exchange_rate_bs END) AS gbp_rate,
         MAX(CASE WHEN currency = 'AUD' THEN exchange_rate_bs END) AS aud_rate,
         MAX(CASE WHEN currency = 'CAD' THEN exchange_rate_bs END) AS cad_rate
-        -- Agrega más monedas si es necesario
+        
     FROM
         {{ ref('normalized_exchange_rates') }}
     GROUP BY
