@@ -1,7 +1,7 @@
 WITH volatility_analysis AS (
     SELECT
-        DATE_TRUNC('month', date) AS month, 
-        EXTRACT(YEAR FROM date) AS year, 
+        DATE_TRUNC('month', date) AS month,  -- Rounds the date to the first day of the month.
+        EXTRACT(YEAR FROM date) AS year, -- Extract the year part from the date.
         country,
         currency,
         STDDEV(exchange_rate_bs) AS stddev_bs,
